@@ -1,44 +1,21 @@
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { View, Text, StyleSheet } from 'react-native';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { View, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { Link } from 'expo-router';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
-    <View style={styles.container}>
-      <Text>hdfahfhadad</Text>
-      <Text>dshfahfdhads</Text>
+    <View className="flex-1 items-center justify-center bg-red">
+      <Text className="text-3xl">hdfahfhadad</Text>
+      <Text>dshfahds</Text>
       <StatusBar style="auto" />
+      <Link href="/profile" style={{ color: 'blue' }}>Go to profile</Link>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'yellow',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-})
